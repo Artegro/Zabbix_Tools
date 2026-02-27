@@ -30,25 +30,25 @@ $targetFolder = "c:\"
 
  # Download & copy zabbix agent
 
-Write-Host "Скачивание файла..." -ForegroundColor Green
+Write-Host "download file..." -ForegroundColor Green
 try {
     # Download
     Invoke-WebRequest -Uri $url -OutFile $zipPath -UseBasicParsing
-    Write-Host "Файл успешно скачан" -ForegroundColor Green
+    Write-Host "download access" -ForegroundColor Green
 }
 catch {
-    Write-Host "Ошибка при скачивании файла: $_" -ForegroundColor Red
+    Write-Host "download error: $_" -ForegroundColor Red
     exit 1
 }
 
-Write-Host "Распаковка архива..." -ForegroundColor Green
+Write-Host "extract completed..." -ForegroundColor Green
 try {
     
     Expand-Archive -Path $zipPath -DestinationPath $targetFolder -Force
-    Write-Host "Архив успешно распакован в: $targetFolder" -ForegroundColor Green
+    Write-Host "extract : $targetFolder" -ForegroundColor Green
 }
 catch {
-    Write-Host "Ошибка при распаковке архива: $_" -ForegroundColor Red
+    Write-Host "extract error: $_" -ForegroundColor Red
     exit 1
 }
 
