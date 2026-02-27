@@ -6,6 +6,10 @@ echo "" > $pathfolder\UPlog.txt
 echo "" > $pathfolder\errlog.txt
 #Path zabbix agent config Files
 $st = "\zabbix_agent7\conf\zabbix_agent.win.conf"
+#Get hosts from AD
+$HostTS=(Get-ADComputer -Filter 'Name -like "*Host_Name1*"').Name
+$HostHyper=(Get-ADComputer -Filter 'Name -like "Host_Name2*"').Name
+$HostS= $HostTS + $HostHyper
 
 #Get Groups
 $testBody = @{
@@ -96,11 +100,6 @@ foreach ($group in $resultt.result) {
 
 
 #Get Hosts
-$HostTS=(Get-ADComputer -Filter 'Name -like "*kz*"').Name
-$HostHyper=(Get-ADComputer -Filter 'Name -like "hyper*k"').Name
-$HostS= $HostTS + $HostHyper
-
-
 foreach ( $hostH in $HostS){
  #Reset group and template ID
    $templateid="31"
